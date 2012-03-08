@@ -504,6 +504,5 @@ page 59
 * [例外処理]
 
 ## 画像
-* [FIG52]
-[FIG52](../img/environments.png "figure img/environments.png")
+* 255行目: ![figure img/environments.png](../img/environments.png)
 ---
