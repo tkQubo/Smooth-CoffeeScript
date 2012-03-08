@@ -16,8 +16,7 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 
 
 ---
-45
----
+45 page
 
 
 `add`は関数の名前、そして`a`と`b`が２つの引数の名前です。`a+b`は、関数の本体となります。「`->`」は、新しく関数を作るときに使います。
@@ -62,83 +61,76 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 
 
 ---
-46
+46 page
+
+
+従って純粋関数で処理できる場面では純粋関数を使ったほうが楽ですが、だからと言って間違っても非純粋関数を毛嫌いしてはいけません。
+
 ---
 
+関数が期待した値を返してくれるかどうかは、どうやって確認すべきでしょうか？先ほどの練習問題では`absolute -144`を実行し、正しい答えを得ることができました。シンプルな関数にはこれだけで充分でしょうが、関数というものは一瞬で途方も無く複雑になり、プログラムコードを読みだけでは戻り値を予測するのが困難になってゆきます。`absolute`がちゃんと動いているか確認するには、もっと多くのテストケースが必要です。しかし、ひたすらテストケースを書き続けるばかりではすぐに飽きが来てしまいます。何かいい方法は無いでしょうか…。
 
-従って、もし純粋関数で問題を簡単に記述できる場合、純粋関数を使うべきでしょう。しかし間違っても非純粋関数を嫌ってはいけません。
+練習問題では、関数が果たすべき機能として次のように書かれていました。「負数の絶対値はその数のマイナス符号を外したもので、正の数あるいは0の絶対値は、その数そのものを指すこととします。」この機能を、コンピュータが理解してテストできる「プロパティ」に置き換えてみましょう。
+
+	testAbsolute = (name, property) ->
+	  qc.testPure absolute , [qc.arbInt], name, property
+
+関数`testAbsolute`は`qc` (quick check[^11]を意味します)の`testPure`関数を呼び出し、最初の引数で`absolute`をテストするよう`testPure`に指示しています。次の引数`arbInt`は、`absolute`が「引数に任意の整数値を取ること」を意味しています。角括弧やドット記号は気にしないでください。これらは次章で説明します。`testAbsolute`に分かり易いテスト名とプロパティを与えて呼び出すことにより、`absolute`にどのような挙動を求められているのかを定義することができます。
+
+	testAbsolute 'returns positive integers',
+	  (c, arg, result) -> result >= 0
+
+まず関数の説明から、`absolute`が0以上の値を返さなければいけないのは明白です。プロパティ内の`result >= 0`がそのことを意味しています。ここでのプロパティは、「テストケース（`case`が予約語なので変数名には`c`を使っています）」「`absolute`を呼び出す時の引数」「`absolute`の戻り値」の、計３つの引数を取る関数です。
+
+[^11]QuickCheckは元々チャルマース工科大学のKoen ClaessenとJohn HughesがHaskell向けに開発したものですが、他のプログラミング言語用にも次々に再実装されてきています。qcライブラリは、Darrin ThompsonによるJavaScript向けの実装です。CoffeeScript対応版は、preludeに含まれています。
+
 
 ---
-
-関数が期待した値を返してくれるかどうかは、どうやって証明すべきでしょうか？先ほどの練習問題では、absolute -144を実行し、正しい答えを得ることができました。シンプルな関数にはこれで充分でしょうが、関数というものは一瞬で途方も無く複雑になり、プログラムコードを読みだけでは戻り値を予測するのが困難になってゆきます。absolute関数がちゃんと動いているか確認するには、もっと多くのテストケースが必要です。しかし、ひたすらテストケースを書き続けるばかりではすぐに飽きが来てしまいます。何かいい方法は無いでしょうか…。
-
-練習問題では、関数が果たすべき機能として次のように書かれていました。「負の数の絶対値はその数のマイナス符号を取ったもので、正の数あるいは０の絶対値は、その数そのものを指すこととします。」この説明を、コンピュータが理解してテストできる「プロパティ」に置き換えてみましょう。
-
-testAbsolute = (name, property) ->
-
-  qc.testPure absolute , [qc.arbInt], name, property
-
-testAbsolute関数はqc (quick check11を意味します)のtestPure関数を呼び出し、最初の引数でabsolute関数をテストするようtestPure関数に指示しています。次の引数arbIntは、absolute関数が「引数に任意の整数値を取ること」を意味しています。角括弧やドット記号は気にしないでください。これらは次章で説明します。testAbsolute関数に分かり易い説明文とプロパティを与えて呼び出すことにより、absolute関数にどのような挙動を求められているのかを定義することができます。
-
-testAbsolute 'returns positive integers',
-
-  (c, arg, result) -> result >= 0
-
-まず関数の説明から、absolute関数が0以上の値を返さなければいけないのは明白です。プロパティ内のresult >= 0がそのことを意味しています。ここでのプロパティは、「テストケース（caseが予約語なので、cを使っています）」「absolute関数を呼び出す時の引数」「absolute関数の戻り値」の、計３つの引数を取る関数です。
-
-11QuickCheckはチャルマース工科大学のKoen ClaessenとJohn HughesがHaskell向けに開発したものですが、他のプログラミング言語用にも次々に再実装されてきています。qcライブラリは、Darrin ThompsonによるJavaScript向けの実装です。CoffeeScript対応版は、preludeに含まれています。
+47 page
 
 
+これらの値に応じて、プロパティは「関数が与えられた条件を満たしているかどうか」をtrueあるいはfalseで返します。
 
-- 48 -
+関数の説明にはこう書いてあります。「正の数あるいは0の絶対値は、その数そのものを指すこととします。」このプロパティには正の数しか必要ありません。`guard`の呼び出しは、`qc`に正ではない値を無視するように伝えます。そしてプロパティは戻り値が引数と同じであることをチェックします。
 
-これらの値に応じて、プロパティは「関数が与えられた条件を満たしているかどうか」をtrueあるいはfalseで返します。関数の説明にはこう書いてあります。「正の数あるいは０の絶対値は、その数そのものを指すこととします。」このプロパティには正の数しか必要ありません。guardの呼び出しは、qcに正ではない値を無視するように伝えます。そしてプロパティは戻り値が引数と同じであることをチェックします。
+	testAbsolute 'positive returns positive',
+	  (c, arg, result) -> c.guard arg >= 0; result is arg
 
-testAbsolute 'positive returns positive',
+負の数のチェックももほとんど同じで、違いはプロパティ内のマイナス符号だけです。
 
-  (c, arg, result) -> c.guard arg >= 0; result is arg
+	testAbsolute 'negative returns positive',
+	  (c, arg, result) -> c.guard arg < 0; result is -arg
 
-負の数のチェックももほとんど同じで、違いはマイナス符号だけです。
+ここまでの段階では、関数に必要なプロパティが宣言されただけです。テストは何一つ実行していません。`qc.test()`を呼び出せばテスト処理が開始され、`qc`がテスト用データを生成してプロパティのチェックを行います。
 
-testAbsolute 'negative returns positive',
+	Pass: returns positive integers (pass=100, invalid=0)
+	Pass: positive returns positive (pass=100, invalid=103)
+	Pass: negative returns positive (pass=100, invalid=90)
 
-  (c, arg, result) -> c.guard arg < 0; result is -arg
+素晴らしいですね。関数`absolute`は一瞬のうちに300ものテストケースをパスしてくれました。ちなみにinvalidの数は、`guard`の呼び出しで無効にされたテストケースの数です。テスト値を表示させたい場合、プロパティ内に`show c.args`を入れて下さい。
 
-ここまでの段階では、関数に必要なプロパティが宣言されただけです。テストは何一つ実行していません。qc.test()を呼び出せばテスト処理が開始され、qcがテスト用データを生成してプロパティのチェックを行います。
+一方、テストが失敗した場合はどのように表示されるのでしょうか？ではご期待にお応えして、テストを失敗させる格好の素材として、本章の最初の方でご紹介した`power`を取り上げてみましょう。`power`関数は、標準ライブラリの`Math.pow`関数と同じ動作をするはずです（もちろん整数を対象にとる場合に限りますが）。
 
-Pass: returns positive integers (pass=100, invalid=0)
-Pass: positive returns positive (pass=100, invalid=103)
-Pass: negative returns positive (pass=100, invalid=90)
+	qc.testPure power, [qc.arbInt , qc.arbInt],
+	  'power == Math.pow for integers',
+	  (c, base, exponent , result) ->
+	    result == c.note Math.pow base, exponent
 
-素晴らしいですね。absolute関数は、一瞬のうちに300ものテストケースをパスしてくれました。ちなみにinvalidの数は、guard関数の呼び出しによって無効にされたテストケースの数です。テスト値を表示させたい場合、プロパティ内にshow c.argsを入れて下さい。
+これを確かめるには、まず`testPure`を呼び出し、`power`が「2つの整数を引数として取る」ことを記述しましょう。そしてプロパティに、`power`の計算結果が`Math.pow`のそれと同じであることを示してやればいいのです。また`Math.pow`の戻り値を得るため、`c.note`を呼び出して元々の引数を登録しましょう。
 
-一方、テストが失敗した場合はどのように表示されるのでしょうか？ではご期待にお応えして、テストを失敗させる格好の素材として、本章の最初の方で紹介したpower関数を取り上げてみましょう。power関数は、標準ライブラリのMath.pow関数と同じ動作をするはずです（もちろん整数を対象にとる場合に限りますが）。
 
-qc.testPure power, [qc.arbInt , qc.arbInt],
+---
+48 page
 
-  'power == Math.pow for integers',
 
-  (c, base, exponent , result) ->
-
-    result == c.note Math.pow base, exponent
-
-それを確かめるには、まずtestPure関数を呼び出し、power関数が「２つの整数を引数として取る」ことを記述しましょう。そしてプロパティに、power関数の計算結果がMath.pow関数のそれと同じであることを示してやればいいのです。Math.pow関数の戻り値を得るため、c.noteを呼び出して元々の引数を登録しましょう。
-
-fail: power == Math.pow for integers
-
-pass=9, invalid=0
-
-shrinkedArgs=3,-2,9,0.1111111111111111
-
-Failed case:
-
-[ -9,
-
-  -9,
-
-  -387420489,
-
-  -2.581174791713197e-9 ]
+	fail: power == Math.pow for integers
+	pass=9, invalid=0
+	shrinkedArgs=3,-2,9,0.1111111111111111
+	Failed case:
+	[ -9,
+	  -9,
+	  -387420489,
+	  -2.581174791713197e-9 ]
 
 このテストは失敗し、qcはなぜ失敗したかを教えてくれます。行の後半に出てくる2つの-9は、qcがテストケース用に生成した引数です。-387420489は、power関数の戻り値です。最後の数値はMath.pow関数から得られたもので、-9-9=-1387420489の近似値になっています。
 
