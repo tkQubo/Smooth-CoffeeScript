@@ -505,5 +505,5 @@ page 59
 
 ## 画像
 * [FIG52]
-
+[FIG52](../environments.png)
 ---
