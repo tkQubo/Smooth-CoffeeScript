@@ -505,5 +505,5 @@ page 59
 
 ## 画像
 * [FIG52]
-[FIG52](../environments.png)
+[FIG52](../img/environments.png "figure img/environments.png")
 ---
