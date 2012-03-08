@@ -504,5 +504,5 @@ page 59
 * [例外処理]
 
 ## 画像
-* 255行目: ![figure img/environments.png](../img/environments.png)
+* 255行目: ![figure img/environments.png](../img/environments.png?raw=true)
 ---
