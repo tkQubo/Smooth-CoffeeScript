@@ -15,8 +15,8 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 	show add 2, 2 
 
 
+page 45
 ---
-45 page
 
 
 `add`は関数の名前、そして`a`と`b`が２つの引数の名前です。`a+b`は、関数の本体となります。「`->`」は、新しく関数を作るときに使います。
@@ -60,8 +60,8 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 [^10]: 厳密に言えば、純粋関数はいかなる外部変数も利用することができません。外部変数は値が変わるかもしれませんし、もし値が変われば、同じ引数でも異なる戻り値を得る可能性があるからです。実際の場面では、プログラマーは幾つかの値を変更されることのない「定数」として扱い、この定数のみを利用した関数を純粋関数に含めています。関数値を保持した変数など、定数の典型例です。
 
 
+page 46
 ---
-46 page
 
 
 従って純粋関数で処理できる場面では純粋関数を使ったほうが楽ですが、だからと言って間違っても非純粋関数を毛嫌いしてはいけません。
@@ -75,7 +75,7 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 	testAbsolute = (name, property) ->
 	  qc.testPure absolute , [qc.arbInt], name, property
 
-関数`testAbsolute`は`qc` (quick check[^11]を意味します)の`testPure`関数を呼び出し、最初の引数で`absolute`をテストするよう`testPure`に指示しています。次の引数`arbInt`は、`absolute`が「引数に任意の整数値を取ること」を意味しています。角括弧やドット記号は気にしないでください。これらは次章で説明します。`testAbsolute`に分かり易いテスト名とプロパティを与えて呼び出すことにより、`absolute`にどのような挙動を求められているのかを定義することができます。
+関数`testAbsolute`はqc (quick check[^11]を意味します)の`testPure`関数を呼び出し、最初の引数で`absolute`をテストするよう`testPure`に指示しています。次の引数`arbInt`は、`absolute`が「引数に任意の整数値を取ること」を意味しています。角括弧やドット記号は気にしないでください。これらは次章で説明します。`testAbsolute`に分かり易いテスト名とプロパティを与えて呼び出すことにより、`absolute`にどのような挙動を求められているのかを定義することができます。
 
 	testAbsolute 'returns positive integers',
 	  (c, arg, result) -> result >= 0
@@ -85,13 +85,13 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 [^11]QuickCheckは元々チャルマース工科大学のKoen ClaessenとJohn HughesがHaskell向けに開発したものですが、他のプログラミング言語用にも次々に再実装されてきています。qcライブラリは、Darrin ThompsonによるJavaScript向けの実装です。CoffeeScript対応版は、preludeに含まれています。
 
 
+page 47
 ---
-47 page
 
 
 これらの値に応じて、プロパティは「関数が与えられた条件を満たしているかどうか」をtrueあるいはfalseで返します。
 
-関数の説明にはこう書いてあります。「正の数あるいは0の絶対値は、その数そのものを指すこととします。」このプロパティには正の数しか必要ありません。`guard`の呼び出しは、`qc`に正ではない値を無視するように伝えます。そしてプロパティは戻り値が引数と同じであることをチェックします。
+関数の説明にはこう書いてあります。「正の数あるいは0の絶対値は、その数そのものを指すこととします。」このプロパティには正の数しか必要ありません。`guard`の呼び出しは、qcに正ではない値を無視するように伝えます。そしてプロパティは戻り値が引数と同じであることをチェックします。
 
 	testAbsolute 'positive returns positive',
 	  (c, arg, result) -> c.guard arg >= 0; result is arg
@@ -101,7 +101,7 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 	testAbsolute 'negative returns positive',
 	  (c, arg, result) -> c.guard arg < 0; result is -arg
 
-ここまでの段階では、関数に必要なプロパティが宣言されただけです。テストは何一つ実行していません。`qc.test()`を呼び出せばテスト処理が開始され、`qc`がテスト用データを生成してプロパティのチェックを行います。
+ここまでの段階では、関数に必要なプロパティが宣言されただけです。テストは何一つ実行していません。`qc.test()`を呼び出せばテスト処理が開始され、qcがテスト用データを生成してプロパティのチェックを行います。
 
 	Pass: returns positive integers (pass=100, invalid=0)
 	Pass: positive returns positive (pass=100, invalid=103)
@@ -119,8 +119,8 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 これを確かめるには、まず`testPure`を呼び出し、`power`が「2つの整数を引数として取る」ことを記述しましょう。そしてプロパティに、`power`の計算結果が`Math.pow`のそれと同じであることを示してやればいいのです。また`Math.pow`の戻り値を得るため、`c.note`を呼び出して元々の引数を登録しましょう。
 
 
+page 48
 ---
-48 page
 
 
 	fail: power == Math.pow for integers
@@ -132,259 +132,214 @@ CoffeeScriptでは、加算は演算子として存在しますが、このよ�
 	  -387420489,
 	  -2.581174791713197e-9 ]
 
-このテストは失敗し、qcはなぜ失敗したかを教えてくれます。行の後半に出てくる2つの-9は、qcがテストケース用に生成した引数です。-387420489は、power関数の戻り値です。最後の数値はMath.pow関数から得られたもので、-9-9=-1387420489の近似値になっています。
+このテストは失敗し、qcはその理由を教えてくれます。行の後半に出てくる2つの-9は、qcがテストケース用に生成した引数です。-387420489は、`power`の戻り値です。最後の数値は`Math.pow`関数から得られたもので、-9-9=-1/387420489の近似値になっています。
 
-qc.testPure power, [qc.arbWholeNum , qc.arbWholeNum],
+	qc.testPure power, [qc.arbWholeNum , qc.arbWholeNum],
+	  'power == Math.pow for positive integers',
+	  (c, base, exponent , result) ->
+	  result == c.note Math.pow base, exponent
 
-  'power == Math.pow for positive integers',
+`power`の対象範囲を整数とするのは、やや広すぎたかもしれません。しかし少なくとも自然数に関しては問題なく動作していたのではないでしょうか？ここで前の例のように`guard`を使ってテストケースの範囲を狭める以外にも、引数の記述を変えるというやり方があります。qcは、引数としてrange型・string型・date型・リスト型など様々な種類の型を扱うことができます。自然数には`arbWholeNum`が用意されています。
 
-  (c, base, exponent , result) ->
+	fail: power == Math.pow for positive integers
+	pass=28, invalid=0
+	shrinkedArgs=9,18,150094635296999100,150094635296999140
+	Failed case:
+	[ 27,
+	  27,
+	  4.434264882430377e+38,
+	  4.434264882430378e+38 ]
 
-  result == c.note Math.pow base, exponent
+さて今度は28個のテストをパスして、27^27で止まりました。どうやら最後の桁の数字が違っているみたいです[^12]。ここで`shrinkedArgs`と書かれた行に注目してください。qcはテストに失敗すると、同じ問題を発生させるテストの中で、よりシンプルなものを探し出そうとします。ここで言う「シンプル」とはより短い文字列やリストなどのことで、この場合はより小さな数値のことを指します。
 
-整数用のpower関数は、その対象範囲が広すぎたかもしれません。しかし少なくとも自然数に関してはうまく動作していたのではないでしょうか？前の例のようにguard関数を使ってテストケースの範囲を狭める以外にも、引数の記述を変えるというやり方があります。qcは、引数としてrange型・string型・date型・リスト型など様々な種類の型を扱うことができます。自然数にはarbWholeNumが用意されています。
+[^12]ECMAScriptではJavaScriptに対してこれらの偏差誤差を許容しています。これはもちろんCoffeeScriptにも当てはまります。どうしても完全に誤差の無い整数を扱いたい場合は、サードパーティー製のライブラリを使うか、Pureなどのより数学志向なプログラミング言語を使うことをお勧めします。
 
-fail: power == Math.pow for positive integers
 
-pass=28, invalid=0
+page 49
+---
 
-shrinkedArgs=9,18,150094635296999100,150094635296999140
 
-Failed case:
+qcは9^18の段階で既に違いを見つけています。`power`の戻り値は100で終わり、`Math.pow`は140で終わっています。果たしてどちらが正しいのでしょうか？どちらも正しくありません[^13]。 9^18 = 150094635296999121が正解です。
 
-[ 27,
+## 練習問題8
 
-  27,
+下記のプログラムをコピーして、関数`intensify`がテストプロパティをパスするように修正して下さい。`223`ページのqcリファレンスには`arbConst`など多くのqc用語が載っているので、参考にしてください。またpreludeをrequireすると、`c.noteVerbose`が使えます。`c.noteVerbose`はテスト失敗時に値を記録したり、テスト時に値を表示させたりすることができます。
 
-  4.434264882430377e+38,
+	require './prelude'
 
-  4.434264882430378e+38 ]
+	intensify = (n) ->
+	  2
 
-さて今度は28個のテストをパスして、2727で止まりました。どうやら最後の桁の数字が違っているみたいです12。ここでshrinkedArgsと書かれた行に注目してください。qcはテストに失敗すると、同じ問題を発生させるテストの中で、よりシンプルなものを探し出そうとします。ここで言う「シンプル」とはより短い文字列やリストなどのことで、この場合はより小さな数値のことを指します。
+	qc.testPure intensify , [qc.arbInt],
+	  'intensify grows by 2 when positive',
+	  (c, arg, result) ->
+	    c.guard arg > 0
+	    arg + 2 == result
 
-12ECMAScriptではJavaScriptに対してこれらの偏差誤差を許容しています。これはもちろんCoffeeScriptにも当てはまります。どうしても完全に誤差の無い整数を扱いたい場合は、サードパーティー製のライブラリを使うか、Pureなどのより数学志向なプログラミング言語を使うことをお勧めします。
+	qc.testPure intensify , [qc.arbInt],
+	  'intensify grows by 2 when negative',
+	  (c, arg, result) ->
+	    c.guard arg < 0
+	    arg - 2 == result
 
-qcは918の段階で既に違いを見つけています。power関数の戻り値は100で終わり、Math.pow関数は140で終わっています。果たしてどちらが正しいのでしょうか？どちらも正しくありません13。 正解は918 = 150094635296999121です。
+	qc.testPure intensify , [qc.arbConst(0)],
+	  'only non-zero intensify grows',
+	  (c, arg, result) ->
+	    result is 0
 
-練習問題8
+	qc.test()
 
-下記のプログラムをコピーして、intensify関数がテストプロパティをパスするように修正して下さい。223ページのqcリファレンスには、arbConstなど多くのqc用語の説明が載っています。preludeをrequireすると、c.noteVerboseが使えます。c.noteVerboseはテスト失敗時に値を記録したり、テスト時に値を表示させたりすることができます。
+[^13]: この書籍（訳者注：原版のこと）を作る際LYXと呼ばれる文書プロセッサを使いました。計算結果はLYXに統合されているMaximaによるものです。Maximaは、記号演算や精度制限の無い計算を行うことのできるコンピュータ代数システムです。
 
-require './prelude'
 
-intensify = (n) ->
+page 50
+---
 
-  2
 
-qc.testPure intensify , [qc.arbInt],
+### 解答
 
-  'intensify grows by 2 when positive',
+	intensify = (n) ->
+	  if n > 0
+	    n + 2
+	  else if n < 0
+	    n - 2
+	  else
+	    n
 
-  (c, arg, result) ->
-
-    c.guard arg > 0
-
-    arg + 2 == result
-
-qc.testPure intensify , [qc.arbInt],
-
-  'intensify grows by 2 when negative',
-
-  (c, arg, result) ->
-
-    c.guard arg < 0
-
-    arg - 2 == result
-
-qc.testPure intensify , [qc.arbConst(0)],
-
-  'only non-zero intensify grows',
-
-  (c, arg, result) ->
-
-    result is 0
-
-qc.test()
-
-13この書籍（訳者注：原版のこと）を作る際LYXと呼ばれる文書プロセッサが使われており、計算結果はLYXに統合されているMaximaによるものです。Maximaは、記号演算や精度制限の無い計算を行うことのできるコンピュータ代数システムです。
-
-解答
-
-intensify = (n) ->
-
-  if n > 0
-
-    n + 2
-
-  else if n < 0
-
-    n - 2
-
-  else
-
-    n
-
-関数を書く前にテスト記述を書くことは、関数を把握するのに役立ちます。今までの例で見たように、テスト記述は、テスト対象である関数よりもかなり長いコードになります。二分ヒープには、クラスとそのテストケースのより実際的な例が述べられています。宣言的テストは、テストアルゴリズムおよび再利用可能なライブラリに非常に適しています。他にも好みと作業内容に応じて、さまざまなテストツールが存在します14。ここで強調しておきたいことは、「適切なレベルのテストを行うことは、コーディングの一部である」ということです。
+関数を書く前にテスト記述を書くことは、関数を把握するのに役立ちます。今までの例で見たように、テスト記述は、テスト対象である関数よりもかなり長いコードになります。[二分ヒープ][]には、クラスとそのテストケースのより実際的な例が述べられています。このような記述的テストは、テストアルゴリズムおよび再利用可能なライブラリに非常に適しています。他にも好みと作業内容に応じて、さまざまなテストツールが存在します[^14]。ここで強調しておきたいことは、「適切なレベルのテストを行うことは、コーディングの一部である」ということです。
 
 ---
 
-関数の話に戻ります。関数は、return文は必須ではありません。return文無しで関数処理が終わった場合、関数は最後の命令文の値を戻り値とします。preludeのshow関数は、自身の引数をそのまま返すので、表現式の中で使うことができます。もしundefinedを返したい場合は、最後の命令文を「return」にします。
+関数の話に戻ります。関数は、`return`文は必須ではありません。`return`文無しで関数処理が終わった場合、関数は最後の命令文の値を戻り値とします。preludeの`show`関数は、自身の引数をそのまま返すので、表現式の中で使うことができます。もし`undefined`を返したい場合は、最後の命令文を「`return`」にします。
 
-yell = (message) ->
-
-  show message + '!!'
-
-  return
-
-yell 'Yow'
+	yell = (message) ->
+	  show message + '!!'
+	  return
+	yell 'Yow'
 
 ---
 
 関数の引数は、内部変数のように利用できます。関数は呼び出し時の引数を参照しますが、これらは内部で定義された他の変数と同様、関数外では利用できません。また関数はトップレベルスコープとは別に、小さなローカルスコープを生成します。変数を参照する際、関数はまず外部スコープをチェックし、そこに変数が見つからない場合のみ、ローカルスコープに変数を生成します。
 
-14CoffeeScriptはほとんどのJavaScript用テストツールに対して互換性があり、簡単に利用することができます。
+[^14]: CoffeeScriptはほとんどのJavaScript用テストツールに対して互換性があり、簡単に利用することができます。
 
-dino = 'I am alive'
 
-reptile = 'I am A-OK'
+page 51
+---
 
-meteor = (reptile) ->
 
-  show reptile # Argument
+	dino = '恐竜：生きてるよ！'
+	reptile = 'トカゲ：元気だぜ！'
+	meteor = (reptile) ->
+	  show reptile 				# 引数
+	  dino = '恐竜：絶滅した！'
+	  reptile = 'トカゲ：生き残った！'
+	  possum = 'オポッサム：はじめまして！'
+	show dino 					# 外部
+	meteor '何が起こった？'
+	show dino					# 外部 変更あり
+	show reptile				# 外部 変更無し
+	try show possum catch e
+	  show e.message			# undefinedエラー
 
-  dino = 'I am extinct'
+これによって、引数は同じ名前を持つ外部変数を「隠蔽する」ことができます。変数を扱うのに一番楽な方法は、ファイル内で全ての変数にユニークな名前を付けることです。また明示的にエクスポートしない限り、トップレベル変数はファイル間で共有されません。詳しくは[モジュラー性][]を参照して下さい。
 
-  reptile = 'I survived'
+![FIG52][]
 
-  possum = 'I am new'
+従って関数内部の変数名が外部スコープにも存在した場合、その変数は外部スコープを参照しているものであって、新しく定義されたものではありません。`variable = 'ほげほげ'`のような表現式は、新しい変数の定義かもしれませんし、あるいは既存の変数に代入しているだけかも知れません。
 
-show dino # Outer
 
-meteor 'What happened?'
+page 52
+---
 
-show dino # Outer changed
+トップレベル変数を使う場合には、ファイルの先頭部分でその変数を宣言してデフォルト値を与えておくのが、理想的なやり方です。
 
-show reptile # Outer unchanged
 
-try show possum catch e
+	variable = '1番目' 				# 定義
 
-  show e.message # Error undefined
+	showVariable = ->
+	  show 'showVariableでのvariableの値: ' +
+	        variable 				# 2番目
 
-これによって、引数は同じ名前を持つ外部変数を「隠蔽する」ことができます。変数を扱うのに一番いい方法は、ファイル内で全ての変数にユニークな名前を付けることです。トップレベル変数は、明示的にエクスポートしない限りファイル間で共有することはできません。詳しくはモジュラー性を参照して下さい。
+	test = ->
+	  variable = '2番目' 			# 代入
+	  show 'testでのvariableの値: ' +
+	        variable	 			# 2番目
+	  showVariable()
 
+	show 'variable: ' + variable 	# 1番目
+	test()
+	show 'variable: ' + variable 	# 2番目
 
 
-従って関数内部の変数名が外部スコープにも存在した場合、その変数は外部スコープを参照しているものであって、新しく定義されたものではありません。variable = ‘何とか’ のような表現式は、新しい変数の定義かもしれませんし、あるいは既存の変数に代入しているだけかも知れません。
+ローカルスコープで定義された変数は、関数内のコードからしか利用できません。関数がさらに別の関数を呼び出した場合、新しく呼び出された関数からは、呼び出し元のローカルスコープ変数が見えないのです。
 
-トップレベル変数を使う場合には、ファイルの先頭部分でその変数を宣言してデフォルト値を与えておくのが、形式としては理想的です。
+	andHere = ->
+	  try show aLocal # 未定義
+	  catch e then show e.message
+	isHere = ->
+	  aLocal = 'aLocalは定義済み'
+	  andHere()
+	isHere()
 
+ここで一つ、些細ではありますが極めて役立つ仕組みを紹介しておきます。それは「関数が別の関数*内部*で定義された場合、内側の関数のローカルスコープは、それを囲むローカルスコープをベースにする」ということです。
 
+	isHere = ->
+	  andHere = ->
+	    try show aLocal # 定義済み
+	    catch e then show e.message
+	  aLocal = 'aLocal is defined'
+	  andHere()
+	isHere()
 
 
+page 53
+---
 
-variable = 'first' # Definition
 
-showVariable = ->
+さらにこのケースをご覧ください。きっとびっくりすると思います。
 
-  show 'In showVariable , the variable holds: ' +
+	varWhich = 'トップレベル'
+	parentFunction = ->
+	  varWhich = 'ローカル'
+	  childFunction = ->
+	    show varWhich
+	  childFunction
+	child = parentFunction()
+	child()
 
-        variable # second
+関数`parentFunction`は*内部関数を返し*、最終行でその関数を呼び出しています。`parentFunction`はこの時点でとっくに処理を終えていますが、`varWhich`が値「`ローカル`」を保持したローカルスコープはまだ残っています。従って関数`childFunction`はその値を参照するわけです。この仕組みをクロージャと呼びます。
 
-test = ->
+---
 
-  variable = 'second' # Assignment
+スコープを使うことによって、関数を「統合する」ことができます。内部関数が、自身を包括する関数内の変数を使うことによって、さまざまな処理が可能になります。例えば引数に2を足す関数、5を足す関数などのように、機能的にはほとんど同一の関数を考えてみてください。
 
-  show 'In test, the variable holds ' +
+	makeAddFunction = (amount) ->
+	  add = (number) -> number + amount
 
-        variable + '.' # second
+	addTwo = makeAddFunction 2
+	addFive = makeAddFunction 5
+	show addTwo(1) + addFive(1)
 
-  showVariable()
+---
 
-show 'The variable is: ' + variable # first
+スコープ化の法則により、異なる関数が同じ名前の変数を使っても衝突せず、さらに関数が*自分自身*を呼び出しても何の問題も生じないのです。関数が自分自身を呼び出すことを、再帰と呼びます。再帰関数は少々変わった定義の仕方をします。再帰関数を定義するにはまず停止条件が必要です。さもなければせっかく丁寧に作った再帰関数も、無限ループに陥ることになります。この`power`関数を見てください。
 
-test()
 
-show 'The variable is: ' + variable # second
+page 54
+---
 
-ローカルスコープで定義された変数は、関数内のコードでしか有効ではありません。関数がさらに別の関数を呼び出した場合、新しく呼び出された関数からは、呼び出し元の関数にある変数が見えないのです。
 
-andHere = ->
+	powerRec = (base, exponent) ->
+	  if exponent == 0
+	    1
+	  else
+	    base * powerRec base, exponent - 1
+	show 'power 3, 3 = ' + powerRec 3, 3
 
-  try show aLocal # Not defined
+これは数学者が定義した「べき乗」に近く、以前のバージョンよりもはるかに良いコードに見えます。これはある種のループではありますが、`while`も`for`も無く、さらにはローカルな副作用も存在しません。関数は自分自身を呼び出して、同じ処理を繰り返します。自分自身を呼び出す事で、関数は同じ効果を得る事ができます。停止条件は変数`exponent`が0になることであり、関数は呼び出しのたびに`exponent`から1を引き算して0に近づけてゆきます。もし`powerRec`を再利用可能なライブラリ化した場合、`exponent`が自然数であるという前提条件を明確にドキュメント化しなければいけません。
 
-  catch e then show e.message
-
-isHere = ->
-
-  aLocal = 'aLocal is defined'
-
-  andHere()
-
-isHere()
-
-ここで一つ、些細ではありますが極めて役に立つ仕組みを紹介しておきます。それは「関数が別の関数内で定義された場合、内側の関数のローカルスコープは、それを囲むローカルスコープをベースにする」ということです。
-
-isHere = ->
-
-  andHere = ->
-
-    try show aLocal # Is defined
-
-    catch e then show e.message
-
-  aLocal = 'aLocal is defined'
-
-  andHere()
-
-isHere()
-
-さらにこのケースをご覧ください。きっとビックリすると思います。
-
-varWhich = 'top-level'
-
-parentFunction = ->
-
-  varWhich = 'local'
-
-  childFunction = ->
-
-    show varWhich
-
-  childFunction
-
-child = parentFunction()
-
-child()
-
-parentFunction関数は内部関数を返し、コードの最後でその関数を呼び出しています。parentFunction関数はこの時点でとっくに処理を終えていますが、変数が値「local」を保持したローカルスコープはまだ残っています。従ってchildFunction関数はその値を参照するわけです。この仕組みをクロージャと呼びます。
-
-スコープを使うことによって、関数を「統合する」ことができます。内部関数が、自身を包括する関数内の変数を使うことによって、さまざまな処理が可能になります。例えば引数に２を足す関数、５を足す関数などのように、機能的にはほとんど同一の関数を考えてみてください。
-
-makeAddFunction = (amount) ->
-
-  add = (number) -> number + amount
-
-addTwo = makeAddFunction 2
-
-addFive = makeAddFunction 5
-
-show addTwo(1) + addFive(1)
-
-スコープ化の法則により、異なる関数が同じ名前の変数を使っても衝突せず、さらに関数が自分自身を呼び出しても何の問題も生じないのです。関数が自分自身を呼び出すことを、再帰と呼びます。再帰関数は少々変わった定義の仕方をします。再帰関数を定義するにはまず停止条件が必要です。さもなければ、せっかく丁寧に作った再帰関数も、無限ループに陥ることになります。このpower関数を見てください。
-
-powerRec = (base, exponent) ->
-
-  if exponent == 0
-
-    1
-
-  else
-
-    base * powerRec base, exponent - 1
-
-show 'power 3, 3 = ' + powerRec 3, 3
-
-これは数学者が定義したべき乗に近く、筆者から見ても以前のバージョンよりもはるかに良いものに見えます。これはある種のループではありますが、whileも無くforも無く、さらにはローカルな副作用も存在しません。関数は自分自身を呼び出して、同じ処理を繰り返します。自分自身を呼び出す事で、関数は同じ効果を得る事ができます。停止条件はexponent変数が0になることであり、関数は呼び出しのたびにexponent変数から１を引き0に近づけてゆきます。もしpowerRec関数を再利用可能なライブラリ化した場合、exponent変数が自然数であるという前提条件を明確にドキュメント化しなければいけません。
+---
 
 コードを簡潔にすることで、パフォーマンスに影響が出てくるでしょうか？それを確かめるには、方法は一つしかありません。実際に計測してみることです。下に挙げたのは筆者のPCによる実行結果です。あくまでも一例としてお考えください。CPU、オペレーティングシステム、コンパイラー、ブラウザのインタープリタなどの全てがパフォーマンスに影響してきます。ですので可能な限りターゲット環境に近い状況で計測してください。
 
@@ -530,3 +485,19 @@ Takahiro Yoshida
 
 Yayoi Kinosita
 Tsutomu Kawamura
+
+
+## 不明な点
+1. 予約語と変数の色の使い分け(原文では前者が緑斜体monospace、後者が青色monospace)。さらにコメント部分(灰色monospace)
+1. 53行目、他多数: 脚注
+1. 135, 153行目: べき乗、分数表記はどう書く？
+1. 166行目: 「`223`ページ」出版時にページ数の調整
+1. 311行目: 原文`variable`は、`varWhich`の間違い？
+
+## 外部リンク
+* [関数プログラミング]
+* [二分ヒープ]
+* [モジュラー性]
+
+## 画像
+* [FIG52]
