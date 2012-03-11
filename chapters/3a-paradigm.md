@@ -130,7 +130,7 @@ CoffeeScriptでは、ほとんどの命令文の正体は「値を返す表現�
 
 関数に渡した引数は`arguments`という配列から取得することはできますが、引数が幾つ必要であるか分からない場合、どのようにして関数を呼び出せばよいでしょうか？
 
-関数オブジェクト[^18]は`apply`と呼ばれる関数を持っており、これは次のような場合に用います。まず`apply`は二つの引数を取ります。1番目の引数に関しては、[オブジェクト指向][]の説明をご覧下さい。ここではシンプルに`null`を使います。2番目の引数には、対象の関数が必要とする引数を配列として入れます。ここで暗黙の変数である`arguments`を使うこともできますし、スプラット（`…`）を使うこともできます。
+関数オブジェクト[^18]は`apply`と呼ばれる関数を持っており、これは次のような場合に用います。まず`apply`は二つの引数を取ります。1番目の引数に関しては、[オブジェクト指向][]の説明をご覧下さい。ここではシンプルに`null`を使います。2番目の引数には、対象の関数が必要とする引数を配列として入れます。ここで暗黙の変数である`arguments`を使うこともできますし、スプラット（`...`）を使うこともできます。
 
 	show Math.min.apply null, [5, 6]
 	negate = (func) ->
@@ -249,11 +249,22 @@ HTMLとは、HyperText Mark-up Language(ハイパーテキストマークアッ�
 		<body>
 			<h1>引用</h1>
 			<blockquote>
-				<p>我々がプログラミングを行う時に用いる言語と、我々が考えうる問題及びその解法との間は、非常に密接な関係がある。この理由によって、プログラマからエラーを取り除くために言語機能に制限を設けることは、ひいき目に見ても危険であると言える。</p>
+				<p>
+					我々がプログラミングを行う時に用いる言語と、
+					我々が考えうる問題及びその解法との間は、非常に密接な関係がある。
+					この理由によって、プログラマからエラーを取り除くために言語機能に
+					制限を設けることは、ひいき目に見ても危険であると言える。
+				</p>
 				<p>-- ビャーネ・ストロヴストルップ</p>
 			</blockquote>
-			<p>ストロヴストルップ氏はC++プログラミング言語の開発者はでありますが、それにもかかわらず深い洞察力を持った方です。</p>
-			<p>そしてこちらがダチョウの写真になります（訳注：ダチョウ＝「現実逃避者」の暗喩？）：</p>
+			<p>
+				ストロヴストルップ氏はC++プログラミング言語の開発者はでありますが、
+				それにもかかわらず深い洞察力を持っています。
+			</p>
+			<p>
+				そしてこちらがダチョウの写真になります
+				（訳注：ダチョウ＝「現実逃避者」の暗喩？）
+			</p>
 			<img src="../img/ostrich.jpg"/>
 		</body>
 	</html>
@@ -303,7 +314,7 @@ preludeには、HTMLドキュメントを表示するための関数`viewURL`が
 
 > %%　陰と陽
 
->  マシンの奥深い場所で、プログラムが動いている。それはいとも容易く拡大と縮小を繰り広げる。偉大なる調和の元に、電子は離れそして再び集うのだ。モニター上のイメージは、水上のさざなみに如かず。真理は我々の見えないところに存在する。
+>  マシンの奥深くで、プログラムが蠢いている。それはいとも容易く拡大と縮小を繰り広げる。偉大なる調和の元に、電子は離れそして再び集うのだ。モニター上のイメージは、水上のさざなみに如かず。真理は我々の見えないところに存在する。
 
 > 天はPCに、CPUとメモリを与えた。ここからプログラムの陰陽が浮き彫りにされる。
 
@@ -311,539 +322,521 @@ preludeには、HTMLドキュメントを表示するための関数`viewURL`が
 
 > データは単純なビットからできているが、複雑な情報の担い手となる。コントロールはシンプルな命令から成り立っているが、それでも難しいタスクを実行することができる。矮小でちっぽけなものから、偉大で複雑なものが生まれるのだ。
 
-> プログラムのソースはデータである。コントロールはそこから生じる。コントロールは新しいデータを生成する。一方がもう一方から生まれ、もう一方は一方が存在しないと意味を成さない。これこそがデータとコントロールの調和的な循環である。
+> プログラムのソースはデータである。コントロールはそこから生じる。そしてコントロールは新しいデータを生成する。一方がもう一方から生まれ、もう一方は一方の存在無しには意味を持たない。これこそがデータとコントロールの調和的な循環である。
 
 > データもコントロールも、それ自身は何の構造も持っていない。いにしえのプログラマは、これらの原料を型に流し込むようにプログラムを作り上げていた。 
 
 ## page 110
 
-時は流れ、無定形のデータはデータ型へと結晶化され、混沌たるコントロールはコントロール構造及び関数へと集約されてゆく。
+> 時は流れ、無定形のデータはデータ型へと結晶化され、混沌たるコントロールはコントロール構造及び関数へと集約されてゆく。
 
-%% 対話
+> %% 対話
 
-門人が孔子に、データとコントロールの循環的な性質について問う。孔子これに応えて曰く「コンパイラはどうだい、自分自身をコンパイルしているじゃないか」
+> 門人が孔子に、データとコントロールの循環的な性質について問う。孔子これに応えて曰く「コンパイラはどうだい、自分自身をコンパイルしているじゃないか」
 
-門人が問いて曰く「いにしえのプログラマは、シンプルなマシンしか使わず、プログラミング言語なんてありませんでした。それでも美しいプログラムを書くことができたそうです。ならばどうして私たちに複雑なマシンと複雑なプログラミング言語が必要なのでしょうか？」孔子、これに応えて曰く「そうだね。いにしえの建築家たちは棒切れと粘土しか使わなかったが、それでも美しい掘っ立て小屋を作ることができたがね。」
+> 門人が問いて曰く「いにしえのプログラマは、シンプルなマシンしか使わず、プログラミング言語なんてありませんでした。しかしそれでも美しいプログラムを書くことができたそうです。ならばどうして私たちに複雑なマシンと複雑なプログラミング言語が必要なのでしょうか？」孔子、これに応えて曰く「そうだね。いにしえの建築家たちは棒切れと粘土しか使わなかったが、それでも美しい掘っ立て小屋を作ることができたがね。」
 
-ある隠者が10年かけてプログラムを書き終えた。自らを誇りて曰く「私のプログラムは、MS DOSの動く286マシンで、天体の動きを計算することができる。」孔子、これに応えて曰く「誰も286マシンなんて持っちゃいないし、MS DOSなんて使っちゃいないよ。」
+> ある隠者が10年かけてプログラムを書き終えた。自らを誇りて曰く「私のプログラムは、MS DOSの動く286マシンで、天体の動きを計算することができる。」孔子、これに応えて曰く「誰も286マシンなんて持っちゃいないし、MS DOSなんて使っちゃいないよ。」
 
-孔子がグローバル変数や怪しげなショートカットだらけの、小さなプログラムを書き上げた。それを見た門人が問いて曰く「先生は使ってはいけない手法について教えてくれましたよね。それなのに先生のプログラムにはそれらがばっちり使われているじゃないですか。どういうことですか？」孔子、これに応えて曰く「家が燃えていないならば、わざわざ水道ホースを引っ張り出す必要は無いのだよ。」{これは杜撰なプログラミングを勧めるものではない。むしろ原則に固執することの危険性を指摘しているのである。}
+> 孔子がグローバル変数や怪しげなショートカットだらけの、小さなプログラムを書き上げた。それを見た門人が問いて曰く「先生は使ってはいけない手法について教えて下さいましたよね。それなのに先生のプログラムにはそれらが使われているようです。これはどういうことですか？」孔子、これに応えて曰く「家が燃えていないならば、わざわざ水道ホースを引っ張り出す必要は無いのだよ。」{これは杜撰なプログラミングを勧めるものではない。原則に固執することの危険性を指摘しているのである。}
 
-%% 叡智
+> %% 叡智
 
-門人が、数値に関して愚痴りて曰く「２の平方根を二乗しただけなのに、計算結果が狂っている！」これを聞き孔子、莞爾として笑いて曰く「ここに一枚の紙がある。どうか２の平方根の正確な値を書いてくれないかね。」
+> 門人が、数値に関して愚痴りて曰く「２の平方根を二乗しただけなのに、計算結果が狂っている！」これを聞き孔子、莞爾として笑いて曰く「ここに一枚の紙がある。どうか２の平方根の正確な値を書いてくれないかね。」
 
-孔子曰く「木理を切る時は、大変な力が必要だ。小さな問題をプログラムで解く時でも、大変な量のコードが必要なのだよ。」
+> 孔子曰く「木理を切る時は、大変な力が必要だ。小さな問題をプログラムで解く時でも、大変な量のコードが必要なのだよ。」
 
-子路と子索が、最近書いたプログラムのサイズで競い合っている。「俺は20万行書いたぞ！」子路曰く「コメント抜きでだ！」「ほう」子索曰く「私のは*100万*行を超えたがね。」 Fu-Tzu said 'My best
+> 子路と子索が、最近書いたプログラムのサイズで競い合っている。「俺は20万行書いたぞ！」子路曰く「コメント抜きでだ！」「ほう」子索曰く「私のは\*100万\*行を超えたがね。」 孔子曰く「私のベストプログラムは500行だよ。」これを聞き、子路と子索は啓かれる。
 
 ## page 111
 
-孔子曰く「私のベストプログラムは500行だよ。」これを聞き、子路と子索は啓かれる。
+> 門人、眉をしかめてPCの前に座ったまま、数刻微動だにせず。難しい問題を解くために美しいコードを書こうとするも、どうしてもそれを見出せずにいた。孔子が彼の後頭部をたたき、叱り付ける「\*とっととコーディングしたまえ！\*」門人は汚いコードを書き始める。それを書き上げた時、彼は忽然として美しいコードに思い至った。
 
-門人、眉をしかめてPCの前に座ったまま、数刻微動だにせず。難しい問題を解くために美しいコードを書こうとするも、どうしてもそれを見出せずにいた。孔子が彼の後頭部をたたき、叱り付ける「*とっととコーディングしたまえ！*」門人は汚いコードを書き始める。それを書き上げた時、彼は突如として美しいコードに思い至った。
+> %% 前進
 
-%% 前進
+> プログラミング初心者は、まるでアリが塚を築くがごとく、大きな構造を考えずに一気にプログラムを書き始める。そのコードはまるでサラサラの砂のようだ。小さなものならともかく、少し大きなプログラムを組み立てようとすると、たちまち崩れてしまう。{コード内部の一貫性の無さや、重複コードによって生じる危険性を指している。}
 
-プログラミング初心者は、まるでアリが塚を築くがごとく、大きな構造を考えずに一気にプログラムを書き始める。そのコードはまるでサラサラの砂のようだ。小さなものならともかく、少し大きなプログラムを組み立てようとすると、たちまち崩れてしまう。
-{
-コード内部の一貫性の無さや、重複コードによって生じる危険性を指している
-}.
+> プログラマはこの問題に直面し、構造について多大な時間を費やして考えるようになる。やがてプログラムは、岩彫刻のようにがっしりしたものになってゆく。堅牢なプログラムはしかし、ひとたび変更の必要に迫られたとき、暴力に訴えなければそれを変えることはできない。 {構造そのものが、プログラムの発展を妨げてしまうという傾向を示している。}
 
-プログラマはこの問題に直面し、構造について多大な時間を費やして考えるようになる。やがてプログラムは、岩彫刻のようにがっしりしたものになってゆく。堅牢なプログラムはしかし、ひとたび変更の必要に迫られたとき、暴力に訴えなければそれを変えることはできない。
- {
-構造そのものが、プログラムの発展を妨げてしまうという傾向を示している
-}.
+> 真のプログラマは、構造を用いることと単純なコーディングを行うこととのバランス感覚を心得ている。そのプログラムは粘土のように、堅牢かつ柔軟であるのである。
 
-真のプログラマは、構造を用いることと単純なコーディングを行うこととのバランス感覚を心得ている。そのプログラムは粘土のように、堅牢かつ柔軟であるのである。
+> %% 言語
 
-%% 言語
+> プログラミング言語は、シンタクスとセマンティクスを備えたものとして作られた。シンタクスはプログラムの形式を、セマンティクスはその機能をつかさどる。シンタクスが美しくセマンティクスが明確であるならば、プログラムは堂々たる樹木の容をなす。シンタクスが拙く、セマンティクスが混沌としていると、プログラムは茨の茂みとなる。
 
-プログラミング言語は、シンタクスとセマンティクスを備えたものとして作られた。シンタクスはプログラムの形式を、セマンティクスはその機能をつかさどる。シンタクスが美しくセマンティクスが明確であるならば、プログラムは堂々たる樹木の容をなす。シンタクスが拙く、セマンティクスが混乱していると、プログラムは茨の茂みとなる。
-
-子索はJavaと呼ばれる言語でプログラムを書くよう命じられた。Javaは、非常に原始的な関数の使い方を要請する言語である。彼は毎朝PCの前に座っては、文句を言い始める。こいつは全てを滅茶苦茶にしてしまうどうしようもない言語であると、彼は一日中口汚く罵っていた。 Fu-Tzu
+> 子索はJavaと呼ばれる言語でプログラムを書くよう命じられた。Javaは、非常に原始的な関数の使い方を要請する言語である。彼は毎朝PCの前に座っては、文句を言い始める。こいつは全てを滅茶苦茶にしてしまうどうしようもない言語であると、彼は一日中口汚く罵っていた。孔子、これをしばらく聞き、そして彼に近づいて曰く「どんな言語にもやり方というものがあるのだよ。その形式に従いなさい。決して別の言語を扱うかのごとくコーディングをしてはいけないよ。」
 
 ## page 112
 
-孔子、これをしばらく聞き、そして彼に近づいて曰く
-「どんな言語にもやり方というものがあるのだよ。その形式に従いなさい。決して別の言語を扱うかのごとくプログラムを行ってはいけないよ。」
+--
 
-○●○
-
-われらが世捨て人の想いを無駄にしないためにも、ぜひHTML生成プログラムを作ってみましょう。まずこの問題に関して、次のようなアプローチが考えられます。
+われらが世捨て人の想いを無駄にしないためにも、ぜひHTML生成プログラムを作ってみましょう。HTMLの生成に関して、以下のようなプロセスが考えられます。
 
 1. ファイルを、空の行で区切って幾つかの段落に分ける
 2. ヘッダ行から%記号を取り除き、ヘッダとしてマーキングする
 3. 段落内のテキストを処理する。通常部分、強調部分、そして脚注部分へと分割する。
-4. 全ての脚注をドキュメントの一番下に移動し、脚注のあった箇所に数字19を入れておく。
+4. 全ての脚注をドキュメントの一番下に移動し、脚注のあった箇所に数字[^19]を入れておく。
 5. 各分割部分を正しくHTMLタグでマークアップする
 6. 全体を一つのHTMLドキュメントとしてまとめる
 
-ただこの手法では、強調されたテキスト内に脚注を入れることはできませんし、逆もまた無理です。これはやや恣意的なルールですが、代わりにサンプルコードをシンプルにできます。
-この章を終えて物足りないと感じるようであれば、ネスト可能なマークアップをサポートするようにプログラムを改良してみてはいかがでしょうか。
-原文は「06-RecluseFile.text」に収められています。preludeにあるreadTextFile関数を使って、中身を文字列として取り出してみましょう。
+ただこの手法では、強調されたテキスト内に脚注を入れることはできませんし、逆もまた無理です。やや貧弱な仕様と思われるでしょうが、代わりにサンプルコードをシンプルにできます。この章を終えて物足りないと感じるようであれば、ネスト可能なマークアップをサポートするようにプログラムを改良してみてはいかがでしょうか。
 
-recluseFile = readTextFile '06-RecluseFile.text'
+原文は「`06-RecluseFile.text`」に収められています。preludeにある`readTextFile`関数を使って、中身を文字列として取り出してみましょう。
 
-○●○
+	recluseFile = readTextFile '06-RecluseFile.text'
 
-アルゴリズムのステップ１は至極簡単です。空の行は、2つの改行が連続して続いた場合に発生します。ところで、以前データ構造でsplitを使ったのを覚えているでしょうか。この関数を使えばステップ１は簡単に実現できます。
+---
 
-paragraphs = recluseFile.split "\n\n"
-show "Found #{paragraphs.length} paragraphs."
+アルゴリズムのステップ１は至極簡単です。空の行は、2つの改行が連続して続いた場合に発生します。ところで、以前[データ構造][]で`split`を使ったのを覚えているでしょうか。この関数を使えばステップ１は簡単に実現できます。
 
------------------------
-19 こんな感じです
+	paragraphs = recluseFile.split "\n\n"
+	show "Found #{paragraphs.length} paragraphs."
+
+
+[^19]: こんな感じです
 
 ## page 113
 
-練習問題22
+## 練習問題22
 
-段落文字列を引数として受け取り、その段落がヘッダかどうかをチェックする関数、processParagraphを作ってみてください。ヘッダの場合、%記号を切り分け、その数を数えてください。それから段落内のテキストを含んだcontentというプロパティ、及び段落をラップするタグを含んだtypeというプロパティ、この2つのプロパティを持ったオブジェクトを返します。ここでtypeには、通常の段落の場合は「p」が入り、%記号が1つの場合は「h1」が入ります。%記号がX個あるのに対して、typeの値は「hX」となります。
+段落文字列を引数として受け取り、その段落がヘッダかどうかをチェックする関数、`processParagraph`を作ってみてください。ヘッダの場合、%記号を切り分け、その数を数えましょう。それから段落内のテキストを含んだ`content`というプロパティ、及び段落をラップするタグを含んだ`type`というプロパティ、この2つのプロパティを持ったオブジェクトを返します。ここで`type`には、通常の段落の場合は「`p`」が入り、%記号が1つの場合は「`h1`」が入ります。%記号が`X`個あるのに対して、`type`の値は「`hX`」となります。
 
-解答
+### 解答
 
-processParagraph = (paragraph) ->
-	header = 0
-	while paragraph[0] == '%'
-		paragraph = paragraph.slice 1
-		header++
-	type: if header == 0 then 'p' else 'h' + header,
-	content: paragraph
+	processParagraph = (paragraph) ->
+		header = 0
+		while paragraph[0] == '%'
+			paragraph = paragraph.slice 1
+			header++
+		type: if header == 0 then 'p' else 'h' + header,
+		content: paragraph
 
-show processParagraph paragraphs[0]
+	show processParagraph paragraphs[0]
 
-ここで、先ほど紹介したmap関数を試すときが来ました。
+ここで、先ほど紹介した`map`を試すときが来ました。
 
-paragraphs = map recluseFile.split('\n\n'),
-processParagraph
-show paragraphs[0..2]
+	paragraphs = map recluseFile.split('\n\n'),
+					processParagraph
+	show paragraphs[0..2]
 
-さあ、これで綺麗に分類された段落オブジェクトのできあがりです。この調子で進んでゆきましょう。アルゴリズムその3を忘れていますね。
+さあ、これで綺麗に分類された段落オブジェクトのできあがりです！この調子で進んでゆきましょう。アルゴリズムその3を忘れていますね。
 
-段落内のテキストを処理する。通常部分、強調部分、そして脚注部分へと分割する
+	段落内のテキストを処理する。通常部分、強調部分、そして脚注部分へと分割する
 
-この処理は、次のように分解可能です：
+この処理は、次のように分解可能です。
 
 1. 段落がアスタリスクで始まっている場合、強調部分を取り出し、保存します。
 2. 段落が開き中括弧で始まっている場合、脚注を取り出し、保存します。
-
-## page 114
-
 3. それ以外の場合、強調部分もしくは脚注に出会うまで、あるいは文字列の最後までを抜き出し、通常テキストとして保存します。
 4. 段落内に文字列が残っている限り、1から処理を繰り返します。
 
-練習問題23
+## page 114
 
-段落文字列を受け取り、段落パーツの配列を返す、splitParagraph関数を作ってみましょう。パーツを表現するための工夫が必要です。パーツはtypeとcontentというプロパティを持っています。
-ここではindexOf関数が役に立つでしょう。この関数は、文字列中から文字あるいは部分文字列を検索し、見つかった場合はその位置を、見つからなかった場合は-1を返します。
-アルゴリズムはトリッキーですので、全く正しくない、あるいはあまりに長すぎるものになってしまうかもしれません。困難に直面したときは、立ち止まってちょっとだけ考えてみてください。アルゴリズムを補助する小さな処理を行ってくれる、内部関数を書いてみてみましょう。
+## 練習問題23
 
-解答
+段落文字列を受け取り、段落パーツの配列を返す、`splitParagraph`関数を作ってみましょう。パーツを表現するための工夫が必要です。パーツは`type`と`content`というプロパティを持っています。
+
+ここでは関数`indexOf`が役に立つでしょう。この関数は、文字列中から文字あるいは部分文字列を検索し、見つかった場合はその位置を、見つからなかった場合は-1を返します。
+
+アルゴリズムはトリッキーですので、全く正しくないものになるか、あるいはあまりに長すぎるものになってしまうかもしれません。困難に直面したときは、立ち止まってちょっとだけ考えてみてください。アルゴリズムを補助する小さな処理を行ってくれる、内部関数を書いてみてみましょう。
+
+### 解答
 
 一つの例として参考にしてみてください。
 
-splitParagraph = (text) ->
-# 文字の位置、あるいはテキストの最後を返します
-indexOrEnd = (character) ->
-index = text.indexOf character
-if index == -1 then text.length else index
+	splitParagraph = (text) ->
+		# 文字の位置、あるいはテキストの最後を返します
+		indexOrEnd = (character) ->
+			index = text.indexOf character
+			if index == -1 then text.length else index
 
-# 次の特殊文字あるいはテキストの最後までの文字列を返し、それを除きます
-takeNormal = ->
-end = reduce map(['*', '{'], indexOrEnd),
-Math.min, text.length
-part = text.slice 0, end
-text = text.slice end
-part
+		# 次の特殊文字あるいはテキストの最後までの文字列を返し、それを除きます
+		takeNormal = ->
+			end = reduce map(['*', '{'], indexOrEnd),
+						Math.min, text.length
+			part = text.slice 0, end
+			text = text.slice end
+			part
 
-# 引数の文字までを返し、取り除きます
-takeUpTo = (character) ->
+		# 引数の文字までを返し、取り除きます
+		takeUpTo = (character) ->
+			end = text.indexOf character, 1
+			if end == -1
+				throw new Error 'Missing closing ' +
+								'"' + character + '"'
+			part = text.slice 1, end
+			text = text.slice end + 1
+			part
+
+		fragments = []
+
+		while text != ''
+			if text[0] == '*'
+				fragments.push
+					type: 'emphasised',
+					content: takeUpTo '*'
+			else if text[0] == '{'
+				fragments.push
+					type: 'footnote',
+					content: takeUpTo '}'
+			else
+				fragments.push
+					type: 'normal',
+					content: takeNormal()
+		fragments
 
 ## page 115
 
-end = text.indexOf character, 1
-if end == -1
-throw new Error 'Missing closing ' +
-'"' + character + '"'
-part = text.slice 1, end
-text = text.slice end + 1
-part
+`takeNormal`内で、`map`と`reduce`が頻繁に使われていることに注目してください。この章は関数プログラミングの章であり、従って関数的なプログラミングを目指しましょう！これがどのように動くか分かりますか？`map`は与えられた文字が見つかった位置、あるいは見つからなかった場合は文字列の最終位置、これらの配列を返します。そして`reduce`はそれらの中での最小値を取ります。この値が、文字列内で次に処理を開始する地点になります。`map`と`reduce`を使わなかった場合、関数は例えば次のようになります。
 
-fragments = [];
-
-while text != ''
-if text[0] == '*'
-fragments.push
-type: 'emphasised',
-content: takeUpTo '*'
-else if text[0] == '{'
-fragments.push
-type: 'footnote',
-content: takeUpTo '}'
-else
-fragments.push
-type: 'normal',
-content: takeNormal()
-fragments
-
-takeNormal関数内で、mapとreduceが頻繁に使われていることに注目してください。この章は関数プログラミングの章であり、従って関数的なプログラミングを目指しましょう！これがどのように動くか分かりますか？　mapは与えられた文字が見つかった位置、あるいは見つからなかった場合は文字列の最終位置、これらの配列を返します。そしてreduceはそれらの中での最小値を取ります。この値が、文字列内で次に処理を開始する地点になります。mapとreduceを使わなかった場合、関数は例えば次のようになります。 takeNormalAlternative = ->
-
-nextAsterisk = text.indexOf '*'
-nextBrace = text.indexOf '{'
-end = text.length
-if nextAsterisk != -1
+	takeNormalAlternative = ->
+		nextAsterisk = text.indexOf '*'
+		nextBrace = text.indexOf '{'
+		end = text.length
+		if nextAsterisk != -1
 
 ## page 116
 
-end = nextAsterisk
-if nextBrace != -1 and nextBrace < end
-end = nextBrace
-part = text.slice 0, end
-text = text.slice end
-part
+			end = nextAsterisk
+		if nextBrace != -1 and nextBrace < end
+			end = nextBrace
+		part = text.slice 0, end
+		text = text.slice end
+		part
 
-このやり方だと、大変恐ろしいことになっていますね。大概の場合、複数の物事に関して決断を下す必要がある時には、たとえそれが2つだけだとしても、配列操作として扱うほうが、それぞれの値を個別のif節で扱うよりも良いコードになります。(幸いなことに正規表現では、文字列中に最初に出てくる「この文字か、あの文字」を簡単に探す方法が説明しています)
-もし上に挙げた解答以外の方法でパーツを保存するsplitParagraph関数を書いたのであれば、修正することをお勧めします。なぜなら、本章の残りで出てくる関数は、パーツ配列がtypeとcontentの2つのプロパティを持ったオブジェクトの配列であることを前提としているからです。
+このやり方は大変ひどいですね。概して、複数の要素を処理する必要がある場面では、たとえ要素数が2つだけだったとしても、配列操作として扱うほうが、それぞれの値を個別のif節で扱うよりも良いコードになります。(幸いなことに[正規表現][]では、文字列中に最初に出てくる「この文字か、あの文字」を簡単に探す方法が説明しています)
 
-ここからprocessParagraphを連携させて、段落内のテキストを分割します。私の場合、このように修正しました。
+もし上に挙げた解答以外の方法でパーツを保存する`splitParagraph`を書いたのであれば、修正することをお勧めします。なぜなら、本章の残りで出てくる関数は、パーツ配列が`type`と`content`の2つのプロパティを持ったオブジェクトの配列であることを前提としているからです。
 
-processParagraph = (paragraph) ->
-header = 0
-while paragraph[0] == '%'
-paragraph = paragraph.slice 1
-header++
-type: if header == 0 then 'p' else 'h' + header,
-content: splitParagraph paragraph
-# 追加テスト
-recluseFile = readTextFile '06-RecluseFile.text'
-paragraphs = map recluseFile.split('\n\n'),
-processParagraph
-show paragraphs, 3
+ここから`processParagraph`を連携させて、段落内のテキストを分割します。私の場合、このように修正しました。
+
+	processParagraph = (paragraph) ->
+		header = 0
+		while paragraph[0] == '%'
+			paragraph = paragraph.slice 1
+			header++
+		type: if header == 0 then 'p' else 'h' + header,
+		content: splitParagraph paragraph
+	# 追加テスト
+	recluseFile = readTextFile '06-RecluseFile.text'
+	paragraphs = map recluseFile.split('\n\n'),
+					processParagraph
+	show paragraphs, 3
 
 段落の配列に対してmap処理を行い、段落オブジェクトの配列を取得します。このオブジェクトは、内部にパーツオブジェクトの配列を持っています。次は脚注を取り出し、元の場所に参照点を追加しましょう。
 
-大体このようになります。
-
-extractFootnotes = (paragraphs) ->
+大体次のようになります。
 
 ## page 117
 
-footnotes = []
-currentNote = 0
-replaceFootnote = (fragment) ->
-if fragment.type == 'footnote'
-++currentNote
-footnotes.push fragment
-fragment.number = currentNote
-type: 'reference', number: currentNote
-else
-fragment
-forEach paragraphs, (paragraph) ->
-paragraph.content = map paragraph.content,
-replaceFootnote
-footnotes
+	extractFootnotes = (paragraphs) ->
+		footnotes = []
+		currentNote = 0
+		replaceFootnote = (fragment) ->
+			if fragment.type == 'footnote'
+				++currentNote
+				footnotes.push fragment
+				fragment.number = currentNote
+				type: 'reference', number: currentNote
+			else
+				fragment
 
-全てのパーツに対してreplaceFootnote関数を適用します。移動すべきではないパーツの場合は、関数はそのままその値を返します。脚注だった場合は、その脚注を配列に保存し、脚注への参照を返します。この過程で、全ての脚注とその参照の両方に数字が割り振られることになります。
+		forEach paragraphs, (paragraph) ->
+			paragraph.content = map paragraph.content,
+									replaceFootnote
+		footnotes
 
-○●○
+全てのパーツに対して`replaceFootnote`を適用します。移動すべきではないパーツの場合は、関数はそのままその値を返します。脚注だった場合は、その脚注を配列に保存し、脚注への参照を返します。この過程で、全ての脚注とその参照の両方に数字が割り振られることになります。
 
-これで、ファイルから必要な情報を抽出するための道具立てがそろいました。残った作業は、正しいHTMLを生成することだけです。多くの人々は、HTMLを作るには文字列の連結が最良であると考えています。例えば、囲碁をプレイできるサイトへのリンクが必要な場合は、このようにすることでしょう。
+---
 
-url = "http://www.gokgs.com/"
-text = "Play Go!"
-linkText = "<a href=\"#{url}\">#{text}</a>"
-show linkText
+これで、ファイルから必要な情報を抽出する道具立てがそろいました。残った作業は、正しいHTMLを生成することだけです。多くの人々は、HTMLを作るには文字列の連結が最良であると考えています。例えば、囲碁をプレイできるサイトへのリンクが必要な場合は、このようにすることでしょう。
 
-(ここでaは、HTMLドキュメント内にリンクを作るためのタグを意味します)しかしこれはやり方が拙いだけでなく、文字列が山括弧やアンド記号を含んでいた場合、このタグは間違っていることになります。そうなるとウェブサイトの挙動がおかしくなるでしょうし、「このサイトの作り手はとんでもない素人だ」と判断されてしまうでしょう。そんなことは避けなければいけません。ここでシンプルなHTML生成関数をいくつか書いてみることにします。簡単な作業ですので、早速やってみましょう。
+	url = "http://www.gokgs.com/"
+	text = "Play Go!"
+	linkText = "<a href=\"#{url}\">#{text}</a>"
+	show linkText
 
-○●○
+(ここで`a`は、HTMLドキュメント内にリンクを作るためのタグを意味します)しかしこれはやり方が拙いだけでなく、`text`文字列が山括弧やアンド記号を含んでいた場合、このタグは間違っていることになります。そうなるとウェブサイトの挙動がおかしくなるでしょうし、「このサイトの作り手はとんでもない素人だ」と判断されてしまうでしょう。そんなことは避けなければいけません。ここでシンプルなHTML生成関数をいくつか書いてみることにします。簡単な作業ですので、早速やってみましょう。
+
+---
 
 ## page 118
 
 HTML生成を成功させるための秘訣は、HTMLをフラットなテキストとしてではなく、データ構造として扱うことです。CoffeeScriptのオブジェクトを使うと、簡単にモデリングを行うことができます。
 
-linkObject =
-name: 'a'
-attributes:
-href: 'http://www.gokgs.com/'
-content:['囲碁をプレイ！']
+	linkObject =
+		name: 'a'
+		attributes:
+			href: 'http://www.gokgs.com/'
+		content:['囲碁をプレイ！']
 
-各々のHTML要素は、タグ名に相当するnameプロパティを持っています。タグが属性を持つ場合、HTML要素はattributesプロパティを持ち、そこには様々な属性が保存されているオブジェクトが入ります。タグに中身がある場合、要素内に含まれる他のHTML要素の配列を収めたcontentプロパティを持つことになります。String型は、HTMLドキュメント内のテキストの役割を果たします。従って配列[‘囲碁をプレイ！’]は、リンク内にはただ一つの要素、すなわちシンプルなテキストしか含まれていないことを意味します。
-これらのオブジェクトを直接タイピングするのは面倒です。わざわざそうする必要はありません。ここで手間を省いてくれる関数を作りましょう：
+各々のHTML要素は、タグ名に相当する`name`プロパティを持っています。タグが属性を持つ場合、HTML要素は`attributes`プロパティを持ち、そこには様々な属性が保存されているオブジェクトが入ります。タグに中身がある場合、要素内に含まれる他のHTML要素の配列を収めた`content`プロパティを持つことになります。文字列型は、HTMLドキュメント内のテキストの役割を果たします。従って配列`['囲碁をプレイ！']`は、リンク内にはただ一つの要素、すなわちシンプルなテキストしか含まれていないことを意味します。
 
-tag = (name, content, attributes) ->
-name: name
-attributes: attributes
-content: content
+これらのオブジェクトを直接タイピングするのは面倒ですし、わざわざそうする必要はありません。ここで手間を省いてくれる関数を作りましょう：
 
-ここで、attributes や要素のcontent などを適用しない場合、それらにundefinedをセットするものとしましょう。ですので関数の2つ目と3つ目の引数は、必要なければ空にしておけます。
-tag関数はまだ初歩の段階です。リンクやシンプルなドキュメントの外部構造など、HTML要素の基本的な型を作るためのショートカットを用意します。
+	tag = (name, content, attributes) ->
+		name: name
+		attributes: attributes
+		content: content
 
-link = (target, text) ->
-tag "a", [text], href: target
-show link "http://www.gokgs.com/", "囲碁をプレイ！"
-htmlDoc = (title, bodyContent) ->
-tag "html", [tag("head", [tag "title", [title]]),
-tag "body", bodyContent]
-show htmlDoc 
-引用
-, 
-ルルイエの館にて
- +
-"
-死せるクトゥルフ夢見るままに待ちいたり
-"
+ここで、`attributes`や`content`などを適用しない場合、それらに`undefined`をセットするものとしましょう。ですので関数の2つ目と3つ目の引数は、必要なければ空にしておけます。
+
+関数`tag`はまだ初歩の段階です。リンクやシンプルなドキュメントの外部構造など、HTML要素の基本的な型を作るためのショートカットを用意します。
+
+	link = (target, text) ->
+		tag "a", [text], href: target
+
+	show link "http://www.gokgs.com/", "囲碁をプレイ！"
+
+	htmlDoc = (title, bodyContent) ->
+		tag "html", [tag("head", [tag "title", [title]]),
+					tag "body", bodyContent]
+	show htmlDoc "引用",
+		"ルルイエの館にて 死せるクトゥルフ 夢見るままに 待ちいたり"
 
 ## page 119
 
-練習問題24
+## 練習問題24
 
-必要であればサンプルのHTMLドキュメントの参考にし、画像ファイルの場所を与えるとimg要素を生成するimage関数を作ってください。
+必要であればサンプルのHTMLドキュメントの参考にし、画像ファイルの場所を与えると`img`要素を生成する`image`関数を作ってください。
 
-解答
+### 解答
 
-image = (src) ->
-tag 'img', [], src: src
+	image = (src) ->
+		tag 'img', [], src: src
 
 ドキュメントが完成したら、それを文字列にまで落とし込まなければいけません。これまで作ってきたデータ構造から文字列を組み立てるのは、非常にシンプルなやり方でできます。ここで重要なのは、ドキュメントのテキスト部分の特殊文字を変形処理することです。
 
-escapeHTML = (text) ->
-replacements = [[/&/g, '&amp;']
-[/"/g, '&quot;']
-[/</g, '&lt;']
-[/>/g, '&gt;']]
-forEach replacements, (replace) ->
-text = text.replace replace[0], replace[1]
-text
+	escapeHTML = (text) ->
+		replacements = [[/&/g, '&amp;']
+						[/"/g, '&quot;']
+						[/</g, '&lt;']
+						[/>/g, '&gt;']]
+		forEach replacements, (replace) ->
+			text = text.replace replace[0], replace[1]
+		text
 
-文字列が持つreplace関数は、1番目の引数で与えられた正規表現パターンを全て2番目の引数で置換し、新しい文字列として返します。つまり‘Borobudur’.replace(/r/g, ‘k’)は'Bokobuduk’を返します。パターンのシンタクスについては正規表現で説明しますので、今は気にしないで下さい。
-escapeHTMLでは複数の置換を行いますので、それらを配列として用意し、引数に対して一つ一つループで適用してゆくことになります。
+文字列が持つ`replace`関数は、1番目の引数で与えられた正規表現パターンを全て2番目の引数で置換し、新しい文字列として返します。つまり`'Borobudur'.replace(/r/g, 'k')`は`'Bokobuduk'`を返します。パターンのシンタクスについては[正規表現][]で説明しますので、今は気にしないで下さい。
+`escapeHTML`では複数の置換を行いますので、それらを配列として用意し、引数に対して一つ一つループで適用してゆくことになります。
+
 ダブルクォーテーションも置換します。なぜならHTMLタグの属性部分のテキストにもこの関数を使うからです。属性はダブルクォーテーションで囲みます。従ってその中にダブルクォーテーションを含んではいけないのです。
-replace関数を4回呼ぶことは、コンピュータが文字列全体を4回チェックし、その内容を置換しなければいけないことを意味します。これはあまり効率的ではありませんよね。
+
+`replace`関数を4回呼ぶことは、コンピュータが文字列全体を4回チェックし、その内容を置換しなければいけないことを意味します。これはあまり効率的ではありませんよね。よく考えれば、これをもっと洗練された関数に仕上げることができそうです。先ほど`splitParagraph`関数で見たように、一度だけの実行で置換を済ませてしまうのです。ただ面倒ですので今回はこの作業は行いません。[正規表現][]でこれを実現するための素晴らしいトリックを紹介いたします。
 
 ## page 120
 
-cient.注意してみると、この関数をもっと複雑にしたものを作ることができそうです。先ほどsplitParagraph 関数で見たように、一度だけの実行で済ませてしまおうというわけです。ただ、面倒ですので今はこの作業は行いません。ここで再び正規表現を使って、さらにベターな方法を実現してみましょう。
-
-○●○
+---
 
 HTML要素を文字列に変換するには、このように再帰関数を使うことができます。
 
-renderHTML = (element) ->
-	pieces = []
-	renderAttributes = (attributes) ->
-		result = []
-		if attributes
-			for name of attributes
-				result.push ' ' + name + '="' +
-					escapeHTML(attributes[name]) + '"'
-		result.join ''
+	renderHTML = (element) ->
+		pieces = []
+		
+		renderAttributes = (attributes) ->
+			result = []
+			if attributes
+				for name of attributes
+					result.push ' ' + name + '="' +
+						escapeHTML(attributes[name]) + '"'
+			result.join ''
 
-render = (element) ->
-# テキストノード
-if typeof element is 'string'
-pieces.push escapeHTML element
-# 空のタグ
-else if not element.content or
-element.content.length == 0
-pieces.push '<' + element.name +
-renderAttributes(element.attributes) + '/>'
-# 内容のあるタグ
-else
-pieces.push '<' + element.name +
-renderAttributes(element.attributes) + '>'
-forEach element.content, render
-pieces.push '</' + element.name + '>'
+		render = (element) ->
+			# テキストノード
+			if typeof element is 'string'
+				pieces.push escapeHTML element
+			# 空のタグ
+			else if not element.content or
+						element.content.length == 0
+				pieces.push '<' + element.name +
+						renderAttributes(element.attributes) + '/>'
+			# 内容のあるタグ
+			else
+				pieces.push '<' + element.name +
+						renderAttributes(element.attributes) + '>'
+				forEach element.content, render
+				pieces.push '</' + element.name + '>'
 
-render element
-pieces.join ''
+		render element
+		pieces.join ''
 
-CoffeeScriptオブジェクトからプロパティを抽出しているofループに注目してください。ここでHTMLタグに属性を追加しています。 Also note that in two
+CoffeeScriptオブジェクトからプロパティを抽出している`of`ループに注目してください。ここでHTMLタグに属性を追加しています。また、文字列を蓄積させるために配列を使っている場面が2箇所あります。それぞれ配列の中身が結合され、一つの文字列になるのです。空の文字列に、内容を順次`+=`演算子で追加してゆくというシンプルな方法を採らないのは何故でしょうか？
+
+それは新しい文字列－特に大きな文字列－を生成するのは、とてもコストのかかる作業だからです。CoffeeScriptでは、文字列が決して変化しないということを思い出してください。文字列に何かを連結させる際、そこでは新しい文字列が生成され、元の文字列はそっくりそのまま残っているのです。小さな文字列を沢山連結して大きな文字列を作ろうとすれば、その連結過程で、次の文字列を連結するためだけにその都度新しい文字列が生成されてしまいます。逆に小さな文字列を全て配列の中に収めて、それらをjoinする方法であれば、一つの大きな文字列を生成するだけで済むのです。
 
 ## page 121
 
-また、配列を、文字列を蓄積させるために使っている場面が2箇所あります。それぞれ配列の中身が結合され、一つの文字列になるのです。空の文字列に、内容を順次+=演算子で追加してゆくというシンプルな方法を採らないのは何故でしょうか？
-それは新しい文字列－特に大きな文字列－を生成するのは、とてもコストのかかる作業だからです。CoffeeScriptでは、文字列が決して変化しないということを思い出してください。文字列に何かを連結させる際、そこでは新しい文字列が生成され、元の文字列はそっくりそのまま残っているのです。小さな文字列を沢山連結して大きな文字列を作ろうとすれば、その連結過程で、次の文字列を連結するためだけにその都度新しい文字列が生成されてしまいます。逆に小さな文字列を全て配列の中に収めて、それらをjoinするという方法であれば、一つの大きな文字列を生成するだけで済むのです。
-
-○●○
+---
 
 さあ、HTML生成システムを実際に動かしてみましょう。
 
-show renderHTML link 'http://www.nedroid.com',
-'お絵描き！'	
+	show renderHTML link 'http://www.nedroid.com',
+						'お絵描き！'	
 
-これは問題なく動くでしょう。
+これは問題なく動くはずです。
 
-body = [tag('h1', ['The Test']),
-tag('p', [
-‘ここに段落と’
- +
-‘画像が来ます…’
-]),
-image('../img/ostrich.jpg')]
-doc = htmlDoc 
-'テスト'
-, body
-show renderHTML doc
-# `stopServer()` とタイプするかCtrl-Cを押して終了します。
-viewServer renderHTML doc
+	body = [tag('h1', ['The Test']),
+			tag('p', ['ここに段落と画像が来ます…']),
+	image('../img/ostrich.jpg')]
+	doc = htmlDoc 'テスト', body
+	show renderHTML doc
+	# `stopServer()` とタイプするかCtrl-Cを押して終了します。
+	viewServer renderHTML doc
 
-ここで、この方法が不完全なものであるということを指摘しておかなければいけません。この方法では、HTMLに似ていますがもう少し構造的なXMLというものがレンダリングされます。上で見たようなシンプルなケースでは、問題にはなりません。しかし幾つかの要素の中で、XMLとしては正しいものの適切なHTMLではないものがあり、それらが入ったドキュメントを表示させようとすると、ブラウザが正常に動作しないこともあります。例えば空のscriptタグ（ページ内にJavaScriptを入れるためのタグ）がドキュメント内にある場合、ブラウザはそれが空であると理解できず、そのタグ以降のテキストを全てJavaScriptであると判断してしまいます。（この場合、タグの中にスペースを一つ挿入すれば、それは空タグでなくなり閉じタグも正しく解釈されることで、問題は解決します。） 
+ここで、この方法が不完全なものであるということを指摘しておかなければいけません。この方法では、HTMLに似ていますがもう少し構造的なXMLというものがレンダリングされます。上で見たようなシンプルなケースでは、問題にはなりません。しかし幾つかの要素の中で、XMLとしては正しいものの適切なHTMLではないものがあり、それらが入ったドキュメントを表示させようとすると、ブラウザが正常に動作しないこともあります。例えば空の`script`タグ（ページ内にJavaScriptを入れるためのタグ）がドキュメント内にある場合、ブラウザはそれが空であると理解できず、そのタグ以降のテキストを全てJavaScriptであると判断してしまいます。（この場合、タグの中にスペースを一つ挿入すれば、それは空タグでなくなり従って閉じタグも正しく解釈され、問題は解決します。） 
 
 ## page 122
 
-練習問題25
+## 練習問題25
 
-まずrenderFragment関数を書き、それを利用してrenderParagraph関数を実装してください。renderParagraph関数は、脚注がすでに取り除かれた段落オブジェクトを引数に取り、その段落オブジェクトのtypeプロパティに基づいて、段落やヘッダなどの正しいHTML要素を作ります。
+まず`renderFragment`関数を書き、それを利用して`renderParagraph`関数を実装してください。`renderParagraph`は、脚注がすでに取り除かれた段落オブジェクトを引数に取り、その段落オブジェクトの`type`プロパティに基づいて、段落やヘッダなどの正しいHTML要素を作ります。
+
 脚注の参照をレンダリングする際は、この関数を使ってみてください。
 
-footnote = (number) ->
-tag 'sup',
-[link '#footnote' + number, String number]
+	footnote = (number) ->
+		tag 'sup',
+			[link '#footnote' + number, String number]
 
-supタグはその内容を「上付き(=superscript)」として表示します。つまり他のテキストよりも小さく、文字位置が少し上の部分に表示されます。リンクの参照先は「#footnote1」のようになります。「#」を含んだリンクはページ内の「アンカー」を参照し、今回の場合脚注リンクをクリックすればページの下の脚注内容が書かれている部分に飛ぶことになります。
-強調パーツにはemタグが使われ、通常のテキストは余計なタグなしでレンダリングされます。
+`sup`タグはその内容を「上付き(=superscript)」として表示します。つまり他のテキストよりも小さく、文字位置が少し上の部分に表示されます。リンクの参照先は「`#footnote1`」のようになります。「#」を含んだリンクはページ内の「アンカー」を参照し、今回の場合脚注リンクをクリックすればページの下の脚注内容が書かれている部分に飛ぶことになります。
 
-解答
+強調パーツには`em`タグが使われ、通常のテキストは余計なタグなしでレンダリングされます。
 
-renderFragment = (fragment) ->
-if fragment.type == 'reference'
-footnote fragment.number
-else if fragment.type == 'emphasised'
-tag 'em', [fragment.content]
-else if fragment.type == 'normal'
-fragment.content
+### 解答
 
-renderParagraph = (paragraph) ->
-tag paragraph.type,
-map paragraph.content, renderFragment
+	renderFragment = (fragment) ->
+		if fragment.type == 'reference'
+			footnote fragment.number
+		else if fragment.type == 'emphasised'
+			tag 'em', [fragment.content]
+		else if fragment.type == 'normal'
+			fragment.content
 
-show renderParagraph paragraphs[7]
+	renderParagraph = (paragraph) ->
+		tag paragraph.type,
+			map paragraph.content, renderFragment
 
--123 -
+	show renderParagraph paragraphs[7]
 
-さあゴールはもう目の前です。レンダリング関数が必要な要素は、脚注を残すだけとなりました。「#footnote1」リンクを機能させるために、全ての脚注にアンカーを付ける必要があります。HTMLでは、アンカーはa要素で指定します。これはリンクにも使えます。アンカーにはhref要素ではなく、name要素が必要です。
+## page 123
 
-renderFootnote = (footnote) ->
-anchor = tag "a", [],
-name: "footnote" + footnote.number
-number = "[#{footnote.number}] "
-tag "p", [tag("small",
-[anchor, number, footnote.content])]
+さあゴールはもう目の前です。レンダリング関数が必要な要素は、脚注を残すだけとなりました。「`#footnote1`」リンクを機能させるために、全ての脚注にアンカーを付ける必要があります。HTMLでは、アンカーは`a`要素で指定します。これはリンクにも使えます。アンカーには`href`要素ではなく、`name`要素が必要です。
+
+	renderFootnote = (footnote) ->
+		anchor = tag "a", [],
+			name: "footnote" + footnote.number
+		number = "[#{footnote.number}] "
+		tag "p", [tag("small",
+				[anchor, number, footnote.content])]
 
 そして次の関数は、正しくフォーマットされたファイルとドキュメントのタイトルを与えると、HTMLドキュメントを返します。
 
-renderFile = (file, title) ->
-paragraphs = map file.split('\n\n'),
-processParagraph
-footnotes = map extractFootnotes(paragraphs),
-renderFootnote
-body = map paragraphs,
-renderParagraph
-body = body.concat footnotes
-renderHTML htmlDoc title, body
+	renderFile = (file, title) ->
+		paragraphs = map file.split('\n\n'),
+					processParagraph
+		footnotes = map extractFootnotes(paragraphs),
+					renderFootnote
+		body = map paragraphs,
+					renderParagraph
+		body = body.concat footnotes
+		renderHTML htmlDoc title, body
 
-page = renderFile recluseFile, 'The Book of Programming'
-show page
-# `stopServer()` とタイプするかCtrl-Cを押して終了します。
-viewServer page
+	page = renderFile recluseFile, 'The Book of Programming'
+	show page
+	# `stopServer()` とタイプするかCtrl-Cを押して終了します。
+	viewServer page
 
-配列はconcatメソッドで、他の配列をつなげることができます。文字列に対して＋演算を行うのと同じですね。
+配列は`concat`メソッドで他の配列をつなげることができます。文字列に対して＋演算を行うのと同じですね。
 
-○●○
+---
 
-以降の章では、基礎的な高階関数として、Underscoreライブラリに収められているmapおよびreduce関数をコードサンプルで頻繁に使うことになります。この他にも、便利なツールを適宜紹介し説明・使用してゆくことになります。モジュラー性では、これらの「ベーシックな」関数に対して、より構造的なアプローチで迫ってゆきます。
+以降の章では、基礎的な高階関数として、Underscoreライブラリに収められている`map`および`reduce`をコードサンプルで頻繁に使うことになります。この他にも、便利なツールを随時紹介し説明・使用してゆくことになります。[モジュラー性][]では、これらの「ベーシックな」関数に対して、より構造的なアプローチで迫ってゆきます。
 
-○●○
-
+---
 
 ## page 124
 
-Pureなどの幾つかの関数型プログラミング言語では、foldl (+) 0 (1..10)のように書くことができます。CoffeeScriptでは同じ処理をreduce [1..10], ((a, b) -> a + b), 0と書きます。
-これをコンパクトに書くには、演算子を文字列で表現し、それをインデックスとしたオブジェクトを定義するというやり方があります。
+Pureなどの幾つかの関数型プログラミング言語では、`foldl (+) 0 (1..10)`のように書くことができます。CoffeeScriptでは同じ処理を`reduce [1..10], ((a, b) -> a + b), 0`と書きます。これをコンパクトに書くには、演算子を文字列で表現し、それをインデックスとしたオブジェクトを定義するというやり方があります。
 
-op = {
-'+': (a, b) -> a + b
-'==': (a, b) -> a == b
-'!': (a) -> !a
-# and so on
-}
-show reduce [1..10], op['+'], 0
+	op = {
+			'+': (a, b) 	-> a + b
+			'==': (a, b) 	-> a == b
+			'!': (a) 		-> !a
+			# and so on
+		}
+	show reduce [1..10], op['+'], 0
 
 しかしこれでは演算子のリストは膨大な量になります。このようなデータ構造が、果たして可読性の向上につながるかどうかは疑問です。逆に次のように書いてみるのはどうでしょうか。
 
-add = (a, b) -> a + b
-show reduce [1..10], add, 0
+	add = (a, b) -> a + b
+	show reduce [1..10], add, 0
 
-更に、引数の一方がすでに値を持っているようなequalsやmakdAddFunctionのような関数を作りたい場合はどうでしょう？このような場合には、改めて新しい関数を作ってみましょう。
-ここで「部分適用」という概念が役に立ちます。引数の幾つかの値がすでに分かっており、それらの固定引数に続けて他の引数を渡す、そういった関数を新しく作ってみましょう。単純に書いてしまえば次のようになるはずです。
+更に、引数の一方がすでに値を持っているような`equals`や`makdAddFunction`のような関数を作りたい場合はどうでしょう？このような場合には、改めて新しい関数を作ってみましょう。
 
-partial = (func, a...) ->
-(b...) -> func a..., b...
+ここで「部分適用」という概念が役に立ちます。引数の幾つかの値がすでに分かっており、それらの固定引数に続けて追加の引数を渡す、そういった関数を新しく作ってみましょう。単純に書いてしまえば次のようになります。
 
-f = (a,b,c,d) -> show "#{a} #{b} #{c} #{d}"
-g = partial f, 1, 2
-g 3, 4
+	partial = (func, a...) ->
+		(b...) -> func a..., b...
 
-partialの戻り値は、引数「a…」が適用済みの関数となります。こうして得られた関数は「b…」を引数に与えると実行できますが、この引数は実際にはfuncの引数リストに追加されることになります。
+	f = (a,b,c,d) -> show "#{a} #{b} #{c} #{d}"
+	g = partial f, 1, 2
+	g 3, 4
 
-equals10 = partial op['=='], 10
-show map [1, 10, 100], equals10
+`partial`の戻り値は、引数`a...`が適用済みの関数となります。こうして得られた関数は`b...`を引数に与えると実行できますが、この引数は実際には`func`の引数リストに追加されることになります。
+
+	equals10 = partial op['=='], 10
+	show map [1, 10, 100], equals10
 
 伝統的な関数定義と異なり、Underscoreは実行前に引数の順番を配列として定義します。従って次のように単純に書くことはできません。
 
 ## page 125
 
-square = (x) -> x * x
-show map [[10, 100], [12, 16], [0, 1]],
-partial map, square # 正しくありません
-?????????????
-何故ならsquare関数は、内側にあるmapの2番目の引数である必要があるからです。ですので、ここで引数の順序を逆にするpartial関数をもう一つ作ってみましょう。
+	square = (x) -> x * x
+	show map [[10, 100], [12, 16], [0, 1]],
+		partial map, square # 正しくありません
 
-partialReverse = (func, a) -> (b) -> func b, a
+何故なら`square`は、内部`map`の2番目の引数でなければいけないからです。ですので、ここで引数の順序を逆にする`partial`をもう一つ作ってみましょう。
 
-mapSquared = partialReverse map, square
-show map [[10, 100], [12, 16], [0, 1]], mapSquared
+	partialReverse = (func, a) -> (b) -> func b, a
+
+	mapSquared = partialReverse map, square
+	show map [[10, 100], [12, 16], [0, 1]], mapSquared
 
 しかしここでも、プログラムの意図が、関数を直接定義した時よりも明瞭になっているのかどうかを十分に考慮する必要があります。
 
-show map [[10, 100], [12, 16], [0, 1]],
-(sublist) -> map sublist, (x) -> x * x
+	show map [[10, 100], [12, 16], [0, 1]],
+		(sublist) -> map sublist, (x) -> x * x
 
-○●○
+---
 
-関数を繋げたいときは、関数合成を行うことをお勧めします。この章の始めに、negate関数を紹介しました。これはboolean型のnot演算子を関数の呼び出し結果に適用するものです。
+関数を繋げたいときは、関数合成を行うことをお勧めします。この章の始めに、関数`negate`を紹介しました。これは真偽値型の`not`演算子を関数の呼び出し結果に適用するものです。
 
-negate = (func) ->
-(args...) -> not func args...
+	negate = (func) ->
+		(args...) -> not func args...
 
 これは、一般的なパターンの特殊例となります。関数Aを呼び出し、その結果に関数Bを適用します。合成は数学上の共通概念です。高階関数において、合成は次のように実現できます。
 
-compose = (func1, func2) ->
-(args...) -> func1 func2 args...
+	compose = (func1, func2) ->
+		(args...) -> func1 func2 args...
 
-isUndefined = (value) -> value is undefined
-isDefined = compose ((v) -> not v), isUndefined
-show 'isDefined Math.PI = ' + isDefined Math.PI
-show 'isDefined Math.PIE = ' + isDefined Math.PIE
+	isUndefined = (value) -> value is undefined
+	isDefined = compose ((v) -> not v), isUndefined
+	show 'isDefined Math.PI = ' + isDefined Math.PI
+	show 'isDefined Math.PIE = ' + isDefined Math.PIE
 
-isDefined関数では、名前を付けることなく新しい関数を定義しています。これは、mapやreduceなどに渡す簡単な関数を作りたい時に使う手法です。ただし、関数がこの例よりも複雑になってきた場合には、関数にきちんと定義して名前を付けてやったほうが、コードはより短くそして簡潔になります。
-
-## page 126
-
+`isDefined`関数では、名前を付けることなく新しい関数を定義しています。これは`map`や`reduce`などに渡す簡単な関数を作りたい時に使う手法です。ただし、関数がこの例よりも複雑になってきた場合には、関数にきちんと定義して名前を付けてやったほうが、コードはより短くそして簡潔になります。
 
 ---
 ---
 
 ## 不明な点
-1. 71行目 non-programmerに理解できるか？
+1. 71行目 ノンプログラマに理解できるか？
 
 ## 外部リンク
 * [データ構造]
 * [モジュラー性]
 * [オブジェクト指向]
 * [関数]
+* [正規表現]
 
 ## 画像
 * 231行目: ![figure img/html.png](../img/html.png?raw=true)
