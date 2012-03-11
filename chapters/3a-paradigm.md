@@ -41,7 +41,7 @@
 
 プログラミングで、配列内の各要素に対して基本的な操作を行う場合があります。多くのプログラミング言語は、Ｃ言語のやり方を真似てこれを実現しています。
 
- 	size_t i;
+	size_t i;
 	size_t N = sizeof(thing) / sizeof(thing[0]);
 	for (i = 0; i < N; ++i) {
 		do_something(thing[i]);
